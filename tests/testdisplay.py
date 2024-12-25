@@ -213,15 +213,15 @@ class DummyDisplay:
 tdisp = DummyDisplay(color_format=lv.COLOR_FORMAT.RGB888)
 
 
-alloc_buffer = lambda buffersize: memoryview(bytearray(buffer_size))
+# alloc_buffer = lambda buffersize: memoryview(bytearray(buffer_size))
 
-factor = 10  ### Must be 1 if using an RGBBus
-double_buf = True  ### Must be False if using an RGBBus
+# factor = 10  ### Must be 1 if using an RGBBus
+# double_buf = True  ### Must be False if using an RGBBus
 
-buffer_size = tdisp.width * tdisp.height * (tdisp.color_depth // 8) // factor
+# buffer_size = tdisp.width * tdisp.height * (tdisp.color_depth // 8) // factor
 
-fbuf1 = alloc_buffer(buffer_size)
-fbuf2 = alloc_buffer(buffer_size) if double_buf else None
+# fbuf1 = alloc_buffer(buffer_size)
+# fbuf2 = alloc_buffer(buffer_size) if double_buf else None
 
 
 def get_display(
@@ -241,7 +241,22 @@ def get_display(
         except Exception as e:
             if sys.platform not in ["darwin", "linux"]:
                 sys.print_exception(e)
-    if hasattr(disp, "width") and hasattr(disp, "height"):
-        disp.width = width
-        disp.height = height
+    assert hasattr(disp, "width") is True, "expected width attribute in display driver"
+    assert (
+        hasattr(disp, "height") is True
+    ), "expected height attribute in display driver"
+
+    assert (
+        hasattr(disp, "color_depth") is True
+    ), "expected color_depth attribute in display driver"
+
+    alloc_buffer = lambda buffersize: memoryview(bytearray(buffer_size))
+
+    factor = 10  ### Must be 1 if using an RGBBus
+    double_buf = True  ### Must be False if using an RGBBus
+
+    buffer_size = disp.width * disp.height * (disp.color_depth // 8) // factor
+
+    fbuf1 = alloc_buffer(buffer_size)
+    fbuf2 = alloc_buffer(buffer_size) if double_buf else None
     return TestDisplayDriver(disp, fbuf1, fbuf2, color_format, mode, pointer)
