@@ -91,7 +91,6 @@ jobs:
         source tools/ci.sh && ci_esp32_build_common
         make -C ports/esp32 BOARD=ESP32_GENERIC_S3 
     
-
     # Unix port
     - name: Build unix port
       if: matrix.port == 'unix'
