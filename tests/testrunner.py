@@ -16,6 +16,8 @@ _int = sys.argv.pop() if sys.platform in ["darwin", "linux"] else ""
 _mode = "sim"
 if _int in ("-id", "-d"):
     _mode = "interactive"
+else:
+    sys.argv.append(_int)
 
 
 async def run_test(func, display=None, **kwargs):
