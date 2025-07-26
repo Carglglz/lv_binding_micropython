@@ -22,6 +22,10 @@
 #include "my_include.h"
 #endif
 
+
+/** Enable loading XML UIs runtime */
+#define LV_USE_XML    0
+
 /*====================
    COLOR SETTINGS
  *====================*/
@@ -202,7 +206,11 @@
     #endif
 
     /** Enable drawing complex gradients in software: linear at an angle, radial or conical */
-    /* #define LV_USE_DRAW_SW_COMPLEX_GRADIENTS    0 */
+    #if LV_USE_XML
+        #define LV_USE_DRAW_SW_COMPLEX_GRADIENTS    1
+    #else
+        #define LV_USE_DRAW_SW_COMPLEX_GRADIENTS    0
+    #endif
 
 #endif
 
@@ -479,7 +487,11 @@ extern void mp_lv_deinit_gc();
 #define LV_USE_OBJ_ID           0
 
 /**  Enable support widget names*/
-#define LV_USE_OBJ_NAME         0
+#if LV_USE_XML
+    #define LV_USE_OBJ_NAME         1
+#else
+    #define LV_USE_OBJ_NAME         0
+#endif
 
 /** Automatically assign an ID when obj is created */
 #define LV_OBJ_ID_AUTO_ASSIGN   LV_USE_OBJ_ID
@@ -1177,8 +1189,6 @@ extern void mp_lv_deinit_gc();
 #define LV_USE_TEST_SCREENSHOT_COMPARE 0
 #endif /*LV_USE_TEST*/
 
-/** Enable loading XML UIs runtime */
-#define LV_USE_XML    0
 
 /*1: Enable color filter style*/
 /* #define LV_USE_COLOR_FILTER     0 */
