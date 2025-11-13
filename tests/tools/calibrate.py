@@ -103,7 +103,7 @@ try:
     import display_config
 
     display_config.MODE = "interactive"
-    display_config.POINTER = "interactive"
+    display_config.INDEV = "interactive"
 except Exception:
     display_config = testrunner.display_config
 

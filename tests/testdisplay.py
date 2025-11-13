@@ -13,7 +13,7 @@ class TestDisplayConfig:
     WIDTH = 240
     HEIGHT = 320
     MODE = "sim"
-    POINTER = "sim"
+    INDEV = "sim"
     COLOR_FORMAT = lv.COLOR_FORMAT.RGB888
     RENDER_MODE = lv.DISPLAY_RENDER_MODE.PARTIAL
     SHOW_INFO = True

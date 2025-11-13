@@ -58,7 +58,7 @@ def run(func, filename, disp_config=display_config, **kwargs):
             disp_config.WIDTH,
             disp_config.HEIGHT,
             mode=disp_config.MODE if disp_config.MODE is not None else _mode,
-            pointer=disp_config.POINTER,
+            pointer=disp_config.INDEV,
             color_format=display_config.COLOR_FORMAT,
             render_mode=display_config.RENDER_MODE,
             show_display_info=display_config.SHOW_INFO,

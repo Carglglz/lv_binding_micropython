@@ -55,7 +55,7 @@ try:
     import display_config
 
     display_config.MODE = "interactive"
-    display_config.POINTER = "sim"
+    display_config.INDEV = "sim"
     display_config.SHOW_INFO = False
 except Exception:
     display_config = testrunner.display_config

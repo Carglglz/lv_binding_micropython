@@ -39,7 +39,7 @@ try:
     import display_config
 
     display_config.MODE = "interactive"
-    display_config.POINTER = "interactive"
+    display_config.INDEV = "interactive"
     display_config.WIDTH = 720
     display_config.HEIGHT = 480
     display_config.SHOW_INFO = True
